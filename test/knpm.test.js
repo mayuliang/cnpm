@@ -6,7 +6,7 @@ const path = require('path');
 const fs = require('fs');
 const fse = require('fs-extra');
 const coffee = require('coffee');
-const cnpm = path.join(__dirname, '..', 'bin', 'cnpm');
+const knpm = path.join(__dirname, '..', 'bin', 'knpm');
 const fixtures = path.join(__dirname, 'fixtures');
 const cwd = path.join(fixtures, 'foo');
 
@@ -23,22 +23,22 @@ function run(args, env, callback) {
   }).on('exit', callback);
 }
 
-describe('test/cnpm.test.js', () => {
+describe('test/knpm.test.js', () => {
   after(() => {
     fse.removeSync(path.join(cwd, 'node_modules'));
   });
 
   it('should version', () => {
-    return coffee.fork(cnpm, [ '-v' ])
+    return coffee.fork(knpm, [ '-v' ])
       .debug()
-      .expect('stdout', /cnpm@\d+\.\d+\.\d+ \(/)
+      .expect('stdout', /knpm@\d+\.\d+\.\d+ \(/)
       .expect('code', 0)
       .end();
   });
 
-  it('should show all cnpm config', function(done) {
+  it('should show all knpm config', function(done) {
     const args = [
-      cnpm,
+      knpm,
       'config',
       'ls',
       '-l',
@@ -52,7 +52,7 @@ describe('test/cnpm.test.js', () => {
 
   it('should user custom registry in userconf', function(done) {
     const args = [
-      cnpm,
+      knpm,
       '--userconfig=' + path.join(fixtures, 'userconf'),
     ];
     let stdout = '';
@@ -68,7 +68,7 @@ describe('test/cnpm.test.js', () => {
 
   it('should --help user custom registry in userconf', function(done) {
     const args = [
-      cnpm,
+      knpm,
       '--help',
       '--userconfig=' + path.join(fixtures, 'userconf'),
     ];
@@ -85,7 +85,7 @@ describe('test/cnpm.test.js', () => {
 
   it('should user default registry in userconf dont contain registry', function(done) {
     const args = [
-      cnpm,
+      knpm,
       '--userconfig=' + path.join(fixtures, 'userconf-no-registry'),
     ];
     let stdout = '';
@@ -101,7 +101,7 @@ describe('test/cnpm.test.js', () => {
 
   it('should ingore custom user config', function(done) {
     const args = [
-      cnpm,
+      knpm,
       'config',
       'get',
       'registry',
@@ -111,7 +111,7 @@ describe('test/cnpm.test.js', () => {
     const child = run(args, {
       HOME: path.join(fixtures, 'home'),
     }, function(code) {
-      assert(stdout.match(/https?:\/\/r.npm.taobao.org/));
+      assert(stdout.match(/http?:\/\/10.68.8.100/));
       assert(code === 0);
       done();
     });
@@ -123,7 +123,7 @@ describe('test/cnpm.test.js', () => {
 
   it('should install pedding', function(done) {
     const args = [
-      cnpm,
+      knpm,
       'install',
       'pedding',
     ];
@@ -139,11 +139,11 @@ describe('test/cnpm.test.js', () => {
   });
 
 
-  it('should install cnpm', function(done) {
+  it('should install knpm', function(done) {
     const args = [
-      cnpm,
+      knpm,
       'install',
-      'cnpm',
+      'knpm',
     ];
     if (RUN_ON_CI) {
       args.push('--registry=https://registry.npmjs.org');
@@ -158,7 +158,7 @@ describe('test/cnpm.test.js', () => {
 
   it('should install npm', function(done) {
     const args = [
-      cnpm,
+      knpm,
       'install',
       'npm',
     ];
@@ -175,7 +175,7 @@ describe('test/cnpm.test.js', () => {
 
   it('should show full versions', function(done) {
     const args = [
-      cnpm,
+      knpm,
       '-v',
     ];
     if (RUN_ON_CI) {
@@ -193,7 +193,7 @@ describe('test/cnpm.test.js', () => {
 
   it('should install and pre-build cpp module', function(done) {
     const args = [
-      cnpm,
+      knpm,
       'install',
       'node-murmurhash',
     ];
@@ -214,7 +214,7 @@ describe('test/cnpm.test.js', () => {
   if (!RUN_ON_CI) {
     it('should install node-sass from mirror', function(done) {
       const args = [
-        cnpm,
+        knpm,
         'install',
         'node-sass',
       ];

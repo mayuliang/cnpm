@@ -3,7 +3,7 @@
 const path = require('path');
 const coffee = require('coffee');
 const rimraf = require('rimraf');
-const cnpm = path.join(__dirname, '..', 'bin', 'cnpm');
+const knpm = path.join(__dirname, '..', 'bin', 'knpm');
 const fixtures = path.join(__dirname, 'fixtures');
 
 describe('test/auto-fix-bug-versions.test.js', () => {
@@ -16,7 +16,7 @@ describe('test/auto-fix-bug-versions.test.js', () => {
   });
 
   it('should ignore bug version', () => {
-    return coffee.fork(cnpm, [
+    return coffee.fork(knpm, [
       'i',
       'is-my-json-valid@2.17.0',
     ], {

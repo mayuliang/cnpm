@@ -20,8 +20,8 @@ function checkUpdate() {
     if (!name) {
       return process.exit(0);
     }
-    var url = config.cnpmRegistry + '/' + name + '/latest';
-    urllib.request(url, {headers: {'user-agent': 'cnpm-check'}},
+    var url = config.knpmRegistry + '/' + name + '/latest';
+    urllib.request(url, {headers: {'user-agent': 'knpm-check'}},
     function (err, result) {
       var errmsg = '';
       if (err) {

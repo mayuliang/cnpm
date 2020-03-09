@@ -1,8 +1,8 @@
 {
-  "name": "cnpm",
-  "version": "6.1.1",
-  "description": "cnpm: npm client for cnpmjs.org",
-  "main": "bin/cnpm",
+  "name": "knpm",
+  "version": "0.0.2",
+  "description": "knpm: npm client for knpm",
+  "main": "bin/knpm",
   "files": [
     "bin",
     "lib"
@@ -16,7 +16,7 @@
   },
   "preferGlobal": true,
   "bin": {
-    "cnpm": "bin/cnpm"
+    "knpm": "bin/knpm"
   },
   "dependencies": {
     "auto-correct": "^1.0.0",
@@ -43,32 +43,14 @@
     "fs-extra": "0",
     "rimraf": "^2.5.4"
   },
-  "homepage": "https://github.com/cnpm/cnpm",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/cnpm/cnpm.git"
-  },
-  "bugs": {
-    "url": "https://github.com/cnpm/cnpm/issues"
-  },
   "keywords": [
-    "cnpm",
+    "knpm",
     "npm",
     "npminstall"
   ],
-  "publishConfig": {
-    "tag": "latest-6"
-  },
   "engines": {
     "node": ">= 6.0.0"
   },
-  "ci": {
-    "version": "6, 8, 10, 12",
-    "command": {
-      "travis": "ci",
-      "appveyor": "ci"
-    }
-  },
-  "author": "fengmk2 <fengmk2@gmail.com> (https://fengmk2.com)",
+  "author": "mayuliang_jkcpx <mayuliang_jkcpx@kedacom.com>",
   "license": "MIT"
 }

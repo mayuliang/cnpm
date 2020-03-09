@@ -4,7 +4,7 @@ const path = require('path');
 const coffee = require('coffee');
 const rimraf = require('rimraf');
 
-const cnpmbin = path.join(__dirname, '../bin/cnpm');
+const knpmbin = path.join(__dirname, '../bin/knpm');
 const fixtures = path.join(__dirname, 'fixtures');
 const RUN_ON_CI = process.env.CI;
 
@@ -22,10 +22,10 @@ describe('test/custom-installer.test.js', () => {
 
     const testRE = process.platform === 'win32' ? /\\node_modules\\\.bin\\npm/ : /\/node_modules\/\.bin\/npm i/;
 
-    return coffee.fork(cnpmbin, args, {
+    return coffee.fork(knpmbin, args, {
       cwd,
       env: Object.assign({}, process.env, {
-        DEBUG: 'cnpm*',
+        DEBUG: 'knpm*',
       }),
     })
       .debug()
